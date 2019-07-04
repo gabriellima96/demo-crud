@@ -109,10 +109,10 @@ public class ProductServiceTest {
     final Page<Product> productPage = ProductHelper.newProductPage();
 
     when(productRepository.findAll(
-            eq(productService.createExample(null, null, null)), eq(PageRequest.of(1, 5))))
+            eq(productService.createExample(null, null, null)), eq(PageRequest.of(0, 5))))
         .thenReturn(productPage);
 
-    Page<Product> products = productService.findAllBySearch(null, null, null, PageRequest.of(1, 5));
+    Page<Product> products = productService.findAllBySearch(null, null, null, PageRequest.of(0, 5));
 
     assertEquals(productPage, products);
   }

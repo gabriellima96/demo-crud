@@ -5,9 +5,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.DecimalMax;
-import javax.validation.constraints.Max;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.Objects;
 import java.util.StringJoiner;
 
@@ -19,7 +19,7 @@ public class Product {
   private Long id;
 
   @NotBlank
-  @Max(80)
+  @Size(min = 1, max = 80)
   private String description;
 
   @DecimalMax("99999999.99")

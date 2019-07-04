@@ -14,20 +14,17 @@ public class ResourceExceptionHandler extends ResponseEntityExceptionHandler {
 
   @ExceptionHandler(ObjectNotFoundException.class)
   public ResponseEntity<ErrorDetails> handleObjectNotFoundException(
-      MethodArgumentNotValidException ex,
-      HttpHeaders headers,
-      HttpStatus status,
-      WebRequest request) {
+      ObjectNotFoundException ex, WebRequest request) {
 
     ErrorDetails errorDetails =
         new ErrorDetails(
             System.currentTimeMillis(),
-            status.value(),
+            HttpStatus.NOT_FOUND.value(),
             "Object not found",
             ex.getMessage(),
             request.getContextPath());
 
-    return new ResponseEntity<>(errorDetails, headers, status);
+    return new ResponseEntity<>(errorDetails, HttpStatus.NOT_FOUND);
   }
 
   @Override
